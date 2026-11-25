@@ -1,0 +1,945 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\documentclass[bibtex]{apsr_submission}
+%\documentclass[bibtex,autowc]{apsr_submission}
+
+\documentclass[bibtex]{article}
+% Core packages
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{amsmath}
+\usepackage[titletoc,title]{appendix}
+\usepackage{color}
+\usepackage{longtable}
+% Load preamble BUT ensure geometry/margins are removed from it
+\include{article-preamble}
+
+\title{Disasters, Territorial Contestation, and the Geographic Reallocation of Civil War}
+
+% Fixed Author Syntax (No spaces between braces)
+%\author{Elisa D'Amico}{University College Dublin}{elisa.damico@ucd.ie}
+%\author{Thao-Nguyen Ha}{Vanderbilt University}{}
+%\author{Dagmar Heintze}{The University of Texas at Dallas}{}
+% \author{\sc \large Elisa D'Amico\footnote{University College Dublin. \href{elisa.damico@ucd.ie}{elisa.damico@ucd.ie}.}\and \sc \large Thao-Nguyen Ha\footnote{Vanderbilt University. \href{nguyen.t.ha@Vanderbilt.Edu}{nguyen.t.ha@vanderbilt.edu}.} \and
+% \sc Dagmar Heintze\footnote{The University of Texas at Dallas. \href{dagmar.heintze@utdallas.edu}{dagmar.heintze@utdallas.edu}.}}
+%\runningtitle{Disasters, Territorial Contestation, and the Geographic Reallocation of Civil War}
+
+\begin{document}
+
+\maketitle
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue,
+    filecolor=blue
+}
+\begin{frontmatter}
+\begin{abstract}
+
+How do extreme weather events influence violence and displacement in civil wars? Formal theory predicts that disasters in contested territories prompt governments to increase repression to prevent displacement outflows, while reducing direct fighting. We directly test these predictions, derived from Sun's (2024) model of strategic state violence, using monthly panel data from 553 administrative units across 33 African countries and a staggered treatment difference-in-differences design. We find no evidence consistent with these predictions in contested areas. Instead, our central finding is that disasters geographically reallocate 
+conflict by converting previously stable territories into active fronts. Territorial takeover events also rise significantly in these areas, suggesting that disasters may weaken government control and invite rebel expansion, prompting reactive state violence. Rather than uniformly intensifying or de-escalating civil wars, disasters may geographically reallocate conflict by converting stable territories into conflict zones. Humanitarian actors should anticipate violence expanding into previously safe disaster-affected zones.
+
+
+
+
+%\\
+%\newline
+%\textbf{Word Count:} 4139 
+\end{abstract}
+%%% DO NOT REMOVE THIS LINE. For automatic word count.
+%TC:endignore
+\end{frontmatter}
+\newpage
+
+\section*{Introduction}
+
+As climate change accelerates extreme weather events, understanding how disasters affect civil war dynamics becomes increasingly important. Existing research offers contradictory findings. Some studies argue that disasters intensify violence, by enabling governments to exploit rebel weakness after the disaster to achieve decisive victories \citep{zhao_2025, tennant2024}. Others find that disaster-induced resource scarcity incentivizes peace negotiations \citep{tominaga_when_2021}, while still others find null effects \citep{bergholt2012climate, Omelicheva01102011, doi:10.1177/0022343320973741}. \citeauthor{sun2024strategic}'s \citeyearpar{sun2024strategic} formal model offers a compelling attempt to resolve these contradictions by specifying how disasters should shape state violence and displacement as a function of territorial contestation. We directly and empirically test her predictions.
+
+\citeauthor{sun2024strategic}'s \citeyearpar{sun2024strategic} model predicts that disasters in actively contested areas should lead governments to increase repression to prevent displacement outflows while reducing direct fighting as disaster-affected territory becomes less valuable. However, leveraging a staggered treatment difference-in-differences approach with panel data from African civil wars between 2022 and 2024, we find no evidence consistent with these predictions in contested areas. Instead, we identify a different pattern. Disasters substantially increase violence in \emph{low}-contestation areas while producing null effects in already-contested zones.
+
+This divergence arises because \citeauthor{sun2024strategic}'s \citeyearpar{sun2024strategic} model treats frontlines as static and does not account for how disasters shift the geography of territorial contestation itself. When disasters strike previously stable areas within conflict-affected countries, physical infrastructure damage, governance disruptions, and population displacement weaken state forces' ability to maintain territorial control, creating opportunities for rebel expansion into previously inaccessible areas. When rebel groups attempt to exploit these opportunities, governments respond with military deployments and heightened repression to retain control, increasing violence in previously stable territories.
+
+Our empirical analyses yield three key contributions. First, we establish that \citeauthor{sun2024strategic}'s \citeyearpar{sun2024strategic} predictions do not hold in contested areas, and that the most consequential disaster effects emerge precisely in areas that her model does not speak to. Second, our results demonstrate that disasters do not uniformly intensify or de-escalate conflict, but geographically reallocate violence by opening new fronts in previously stable areas. Third, our findings carry direct implications for humanitarian actors, who should anticipate violence and displacement expanding into previously stable disaster-affected zones rather than remaining confined to pre-existing conflict areas.
+
+We test our expectations using monthly panel data from administrative-level units across African civil war countries. To address potential endogeneity concerns, we measure territorial contestation using predicted conflict risk from machine learning models \citep{mueller_rauh2022} rather than observed violence. We find no support for \citeauthor{sun2024strategic}'s \citeyearpar{sun2024strategic} predictions in contested areas, while the most consequential effects emerge in low-contestation areas the model does not explicitly address. Here, disasters substantially increase military activity, civilian deaths from repression, and displacement. Territorial takeover events also increase significantly, suggesting that disasters create opportunities for rebel territorial expansion. In high-contestation areas, we find null effects on violence and substantial displacement decreases. These patterns are robust to alternative specifications, control group definitions, and contestation thresholds.
+
+% The remainder of this research note proceeds as follows. We first review existing literature on disaster-conflict interactions and develop testable hypotheses from recent formal theory. We then describe our research design and present empirical results, showing how disasters produce divergent effects depending on territorial contestation. Finally, we discuss why theoretical predictions fail to hold and what this reveals about the mechanisms linking disasters to violence in civil wars.
+
+\section*{Theoretical Expectations and Hypotheses}
+
+Previous research has suggested that how governments respond to disasters while fighting internal conflicts can vary widely. While \cite{wood2016responding} argue that governments may choose preemptive repression as disasters aggravate grievances and create opportunities for dissenters to mobilize, other scholars argue that disasters may weaken state capacity \citep{Eastin14032016} and create opportunities for rebel advances, thereby leading to conflict escalation \citep{Berrebi_2011}, or further fueling violence \citep{Kikuta_2019, NelPhilip2008NDat, amarasinghe2025disasters}. Alternatively, governments may increase military activity to achieve decisive wins when rebel groups are weakened by disaster effects \citep{zhao_2025}. Governments may also choose to disburse aid and disaster relief to affected areas \citep{Eastin14032016, ide_rise_2023} instead of escalating conflict, attempting to curry favor with afflicted populations and induce rebels to enter peace talks \citep{tominaga_when_2021, walch2021natural}. Still other research finds no clear association between disasters and conflict patterns \citep{bergholt2012climate, Omelicheva01102011, doi:10.1177/0022343320973741}.
+
+To reconcile these conflicting findings, scholars have shifted focus to the pre-existing strategic contexts in which disasters occur \citep{ide_2023}. The interaction between disaster and territorial competition is especially important here, because disasters often bring about disruptions that shift incentives for fighting to gain new territory, or for maintaining control \citep{wood2016responding, zhao_2025, amarasinghe2025disasters}. Within this literature, \citeauthor{sun2024strategic}'s \citeyearpar{sun2024strategic} formal model (henceforth S24) explicitly specifies how governments calibrate repression and military efforts in contested areas following a disaster. We derive our hypotheses directly from her model.
+
+In S24's model, a government fights a rebel group in contested areas, while simultaneously working to maintain the well-being of its supporters in uncontested areas. The government calibrates its fighting efforts according to its perceived benefits from controlling the contested areas, while simultaneously adapting its repression of the local population to prevent migration outflows to uncontested areas. Following a shock induced by disasters, previous research expects the government to increase military presence to prevent rebels from exploiting disaster-induced vulnerabilities \citep{wood2016responding, zhao_2025}. However, S24's model suggests the opposite: the government will reduce fighting efforts against rebel groups because the direct value of fighting over disaster-damaged territory declines. S24 also predicts that it will increase repression to manage the volume of displacement.\footnote{In practice, repression could in itself trigger migration. In the model from S24, repression prevents civilians from leaving the contested area, for example, via detention. This detail of the model becomes important for our operationalization of repression later on.} Other scholars share this expectation that governments in contested areas have strong incentives to use repression proactively when disasters threaten to destabilize their hold over populations \citep{wood2016responding}. These insights generate our first two hypotheses:
+
+\begin{quote}
+\textbf{H1:} Among contested geographic units, units that experience disasters should see a decrease in fighting levels.
+
+\textbf{H2:} Among contested geographic units, units that experience disasters should see an increase in repression.
+\end{quote}
+
+How civilians respond to both fighting and disasters is an important underlying mechanism of both H1 and H2. In equilibrium, apart from direct human tolls, disasters also trigger a negative shock on economic productivity that incentivizes civilians to leave. In either case, the government must thus be wary of potential displacement following disasters: high migration outflows can both reduce local productivity and generate negative externalities in areas populated by its supporters. Anticipating this outcome, the government may intensify repression specifically to prevent civilians from leaving contested areas. It therefore follows that observable displacement should not increase following disasters in contested zones, even as disaster pressure on the population rises. Hence, conditional on repression intensifying:
+
+\begin{quote}
+\textbf{H3:} Among contested geographic units, units that are affected by disasters should not experience increased displacement.
+\end{quote}
+
+That observable displacement is a function of both the disaster and the state's decision to repress is a key insight from S24. It implies that changes in displacement following disasters are not purely exogenous humanitarian outcomes but are also shaped by strategic state violence, qualifying previous research that treats displacement as a direct and unmediated consequence of environmental shocks.
+
+%In other words, even if the impacts of disasters generate shocks across the system, observable changes to economic conditions can still be endogenous because the government, and perhaps other armed actors, can directly influence these conditions through the use of violence. 
+% this is a key insight for research design and should help us motivate why we use ex-ante measures of economic productivity
+
+% \begin{figure}[H]
+% \includegraphics[width=\linewidth]{Table & Graph/dag.png}
+% \caption{Theoretical Pathways}
+% \label{fig:dag}
+% \end{figure}
+
+\section*{Research Design} 
+
+To test our hypotheses, we assemble a panel of administrative level 1 unit data across African countries experiencing civil conflict from 2022-2024. The temporal scope of the panel is determined by the availability of the predicted conflict risk measure from \citet{mueller_rauh2022}, which is central to our research design: without it, we cannot stratify units by pre-disaster contestation status, and the core empirical test of \citeauthor{sun2024strategic}'s \citeyearpar{sun2024strategic}  predictions is not feasible. The 2022-2024 window therefore reflects the binding constraint imposed by the stratification variable, not a choice among alternatives. Figure \ref{fig:map} displays the spatial distribution of disaster events across contested territories during our study period. The map reveals substantial variation in disaster exposure within conflict zones, capturing contexts where populations face the dual vulnerability of environmental shocks and ongoing violence. These are precisely the conditions under which \citeauthor{sun2024strategic}'s \citeyearpar{sun2024strategic} model predicts governments will employ strategic repression to manage anticipated migration flows, and the geographic variation in disaster exposure provides the natural variation we need to evaluate these predictions.
+
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{Table & Graph/africa_contestation_map.png}
+\caption{Geographic Distribution of Disasters and Civil Conflict.}
+\label{fig:map}
+\floatnote{Data sources: EM-DAT \citep{emdat2026} and ACLED \citep{raleigh2013}. Territorial contestation is measured by the number of territorial takeover events by both state- and non-state actors in a unit. }
+\end{figure}
+
+\subsection*{Data}
+
+{\color{black} Our sample comprises 19,908 unit-month observations across 553 administrative level 1 units in 33 African countries from 2022 to 2024.} Our treatment variable, \textit{Disasters}, comes from the Emergency Events Database \citep{emdat2024}, which includes all recorded disaster events that cause economic damage or casualties.\footnote{The vast majority of disaster events in our sample are floods (95\%), with the remainder consisting of isolated wildfire, storm, and earthquake events. Our findings should therefore be interpreted primarily as capturing the effects of floods on civil war dynamics.} {\color{black} The outcome variables come from the Uppsala Conflict Data Program Georeferenced Event Dataset (UCDP GED) Global version 25.1 \citep{ucdp_ged_25.1} and the International Organization for Migration's Displacement Tracking Matrix (DTM) \citep{iom_dtm2024}. Because in our theoretical framework, repression curtails the ability of the population to move from the area, we thus operationalize \textit{Repression} as civilian battle deaths from one-sided violence. Our data do not capture instances in which civilians are detained or injured, which are more difficult to observe. \textit{Military Activity} captures the monthly count of battle events within each administrative unit. To measure \textit{Internal Displacement} for each unit, due to the lack of global data on displacement origins, we use the total number of internally displaced persons (IDPs) within contiguous administrative level 1 units within the same country as a proxy.}
+
+To proxy for territorial contestation, we employ the predicted conflict risk measure from \citet{mueller_rauh2022}, which captures the likelihood that a grid cell would experience political violence, aggregated to administrative level 1 units. Units are classified as high or low territorial contestation based on whether their Predicted Conflict Risk score exceeds the within-country mean. Because S24's model suggests short-term changes to fighting and repression repsonses, we choose months to be our temporal unit of analysis: annual aggregation would obscure the sequential dynamics of disaster onset, state response, and displacement that we aim to trace in the event study design.
+
+\subsection*{Empirical Strategy}
+
+We stratify the analysis by territorial contestation level, recognizing that state capacity and strategic incentives differ fundamentally between contested and stable areas. We estimate separate staggered treatment difference-in-differences models for high- and low-contestation areas using the \citet{callaway_santanna2021} doubly-robust estimator, which accounts for treatment effect heterogeneity and staggered treatment timing. We implement wild bootstrap standard errors clustered at the administrative level 1 unit to address potential correlation within units over time.
+
+For each stratification level $s \in \{\text{High Risk}, \text{Low Risk}\}$, we estimate:
+
+\begin{align}
+\text{Repression}_{it}^{s} &= \alpha_i^{s} + \lambda_t^{s} + \beta_1^{s} \text{Disaster}_{it} + \epsilon_{it}^{s} \label{eq:repression}\\
+\text{MilitaryActivity}_{it}^{s} &= \alpha_i^{s} + \lambda_t^{s} + \beta_2^{s} \text{Disaster}_{it} + \mu_{it}^{s} \label{eq:military} \\
+\text{IDPStock}_{it}^{s} &= \alpha_i^{s} + \lambda_t^{s} + \beta_3^{s} \text{Disaster}_{it} + \omega_{it}^{s} \label{eq:idp}
+\end{align}
+
+\noindent where $i$ indexes administrative units, $t$ indexes time periods, $\alpha_i^{s}$ are unit fixed effects, $\lambda_t^{s}$ are time fixed effects, and $\beta_k^{s}$ represents the average treatment effect on the treated (ATT) for outcome $k$ in contestation level $s$.
+
+This approach allows us to identify whether disasters produce divergent state responses depending on the degree of territorial contestation, testing whether governments employ strategic violence in areas of stable control versus face capacity constraints in contested territories.
+
+\section*{Results}
+
+{\color{black} Our empirical analysis tests the hypotheses derived from \citet{sun2024strategic} by examining how disasters affect government behavior and displacement patterns across contested and uncontested areas. The model predicts that disasters in contested areas should decrease fighting, increase repression, and limit displacement. We present results for each hypothesis in turn, followed by an additional exploratory analysis that probes the mechanisms underlying our findings.}
+
+\subsection*{Effects on Repression}
+
+Figure \ref{fig:rep} presents the estimated effects of disasters on government repression across contestation levels. In areas with low territorial contestation, disasters produce a sustained and statistically significant increase in repression. The average treatment effect shows an increase of approximately 0.80 additional civilian deaths per month ($p < 0.05$), an effect that persists throughout the post-disaster period. {\color{black} Relative to the pre-treatment baseline mean of 0.42, this represents a roughly 190\% increase. The large relative magnitude reflects the near-absence of violence in these areas prior to disaster onset. In absolute terms, post-disaster repression levels in low-contestation areas remain well below the baseline levels observed in high-contestation areas (3.21).} In contrast, highly contested areas show no systematic change in repression levels, with point estimates fluctuating around zero and wide confidence intervals (ATT = 0.33, $p > 0.05$).
+
+\begin{figure}[H]
+\includegraphics[width=0.99\textwidth]{Table & Graph/repdid.png}
+\caption{DiD Event Study: Effects of Disasters on Repression.}
+\label{fig:rep}
+\floatnote{Data comes from EM-DAT and UCDP GED Global version 25.1. Solid lines represent point estimates; shaded regions show 95\% confidence intervals. Full regression tables available in Appendix \ref{ap:maintabs}, Tables \ref{tab:rep_low} and \ref{tab:rep_high}.}
+\end{figure}
+
+{\color{black} These patterns do not align with H2, which predicted that governments would intensify repression in contested areas to prevent disaster-induced migration outflows. Instead, repression increases precisely in areas where government control was previously uncontested, while contested areas show no systematic change.}
+
+\subsection*{Effects on Military Activity}
+
+The patterns for military activity mirror those observed for repression. Figure \ref{fig:mil} shows that low-contestation areas experience significant increases in battle events following disasters, with an average treatment effect of approximately 0.49 additional battles per month ($p < 0.05$){\color{black}, a 184\% increase relative to the baseline mean of 0.27}. This increase is immediate, sustained, and shows no signs of decay over the 33-month observation period. Meanwhile, highly contested areas show no statistically significant change in military activity (ATT = 0.47, $p > 0.05$), with point estimates that vary considerably across post-treatment periods.
+
+\begin{figure}[H]
+\includegraphics[width=0.99\textwidth]{Table & Graph/milactdid.png}
+\caption{DiD Event Study: Effects of Disasters on Military Activity.}
+\label{fig:mil}
+\floatnote{Data comes from EM-DAT and UCDP GED Global version 25.1. Solid lines represent point estimates; shaded regions show 95\% confidence intervals. Full regression tables available in Appendix \ref{ap:maintabs}, Tables \ref{tab:mil_low} and \ref{tab:mil_high}.}
+\end{figure}
+
+{\color{black} While H1 predicted decreased fighting in contested areas, we find no detectable change in high-contestation zones. The simultaneous increases in both repression and military activity in low-contestation areas are striking. Why would previously stable areas experience such dramatic escalations in violence following disasters?}
+
+{\color{black} \subsection*{What Explains Violence in Low-Contestation Areas?}}
+
+{\color{black} To tease out a potential mechanism underlying these unexpected patterns, we examine changes in territorial control. Previous research has suggested that disasters create new opportunities that shape \emph{where} fighting occurs in the conflict \citep{zhao_2025}. If disasters weaken government control in stable areas, rebel groups may exploit these vulnerabilities to contest previously inaccessible territory, prompting the reactive state violence documented above. Moreover, just as governments find disaster-afflicted contested areas to be less valuable due to reduced economic productivity, the same could apply to rebel groups. As a result, we surmise that disasters affect violent behaviors by shifting the geography of territorial control. Using data on territorial takeover events from ACLED \citep{acled2024}, which records instances in which non-state armed groups gain control of territory from government forces or vice versa, we apply the same \citet{callaway_santanna2021} estimation strategy specified above in Equation \ref{eq:territorial}.}
+\begin{align}
+\text{TerritorialTakeover}_{it}^{s} &= \alpha_i^{s} + \lambda_t^{s} + \beta_4^{s} \text{DisasterShock}_{it} + \nu_{it}^{s} \label{eq:territorial}
+\end{align}
+
+Figure \ref{fig:terr} reveals that disasters in low-contestation areas trigger significant increases in territorial takeover events. The average treatment effect indicates approximately a 126\% increase in territorial events per month (compared to baseline, $p < 0.05$).  This is a substantive shift in areas that previously experienced minimal territorial contestation.
+
+\begin{figure}[H]
+\includegraphics[width=0.99\textwidth]{Table & Graph/tertakdid.png}
+\caption{DiD Event Study: Effects of Disasters on Territorial Takeover Events.}
+\label{fig:terr}
+\floatnote{Data comes from EM-DAT \citep{emdat2026} ACLED \citep{raleigh2010}. Territorial takeover events include rebel gains of territory from government forces or vice versa. Solid lines represent point estimates; shaded regions show 95\% confidence intervals. Full regression tables available in Appendix \ref{ap:maintabs}, Tables \ref{tab:terr_low} and \ref{tab:terr_high}.}
+\end{figure}
+
+In contrast, highly contested areas show no systematic change in territorial dynamics following disasters (ATT = -0.001, $p > 0.05$). {\color{black} These findings suggest that increases in repression and military activity documented above may be linked to disasters reshaping which territories become sites of active contestation. We return to this pattern and its interpretation in the discussion.}
+
+\subsection*{Effects on Displacement}
+
+{\color{black} Figure \ref{fig:idp} presents results for H3, which predicted that displacement should not increase in contested areas following disasters.} {\color{black} Low-contestation areas experience large and sustained increases in IDPs following disasters.} The average treatment effect indicates an increase of approximately 85,879 additional IDPs ($p < 0.05$){\color{black}, roughly 161\% of the baseline mean of 53,291}. {\color{black} {\color{black} We interpret the displacement result with caution.\footnote{The displacement coefficients exhibit considerable volatility across post-treatment periods (see Table~\ref{tab:idp_low}), with the aggregate ATT pulled substantially by large late-period estimates (periods 30--31). The result becomes statistically indistinguishable from zero when the median contestation threshold is used (see Appendix~\ref{ap:robustness}), suggesting the effect is concentrated among units near the mean-median boundary of the contestation distribution.}} The displacement effect accelerates over time, with particularly large increases emerging 14-24 months after the initial disaster shock, suggesting that displacement results not only from the immediate disaster impacts but also from the subsequent violence and territorial instability.\footnote{Some of this effect is also due to our operationalization of the stock of IDPs in contiguous units to the disaster.}
+
+\begin{figure}[H]
+\includegraphics[width=0.99\textwidth]{Table & Graph/idpdid.png}
+\caption{DiD Event Study: Effects of Disasters on Internal Displacement.}
+\label{fig:idp}
+\floatnote{Data comes from EM-DAT and IOM DTM. IDP counts reflect total internally displaced persons in contiguous administrative units. Solid lines represent point estimates; shaded regions show 95\% confidence intervals. Full regression tables available in Appendix \ref{ap:maintabs}, Tables \ref{tab:idp_low} and \ref{tab:idp_high}.}
+\end{figure}
+
+Notably, highly contested areas show the opposite pattern: disasters are associated with significant \textit{decreases} in displacement (ATT = -204,041, $p < 0.05$). {\color{black} This partially aligns with H3. Displacement does not increase in contested areas. However, the predicted mechanism (increased repression preventing outflows) finds no support, as we documented null effects on repression in these areas. Several factors may explain the decrease in displacement in high-contestation areas. For one, in these areas, high levels of pre-existing violence may have already displaced most mobile populations. Second, disaster-related infrastructure damage may limit movements and trap the afflicted populations. Finally, the decrease in compounding political violence (unlike in low-contestation areas) may offset any displacement caused by disasters.}
+
+\subsection*{Robustness}
+
+Our main findings are robust to alternative estimation strategies and specification choices. We conduct six robustness checks for each outcome-contestation combination: (1) alternative control group definitions (never-treated units), (2) different contestation thresholds (universal mean, within-country median), (3) alternative estimators (inverse probability weighting), and (4) comparison of doubly robust versus IPW approaches. The results, reported in Appendix \ref{ap:robustness}, demonstrate that our core findings (i.e., increased violence in low contestation areas and decreased displacement in high contestation areas following disasters) remain statistically significant and substantively consistent across specifications. Although \cite{sun2024strategic} distinguishes between short- and longer-run effects, both are expected to manifest within a few years of disaster onset. With over 12 months of post-treatment observation for the majority of treated units, our panel is sufficient to capture both the immediate and medium-term dynamics the model predicts. The absence of any discernible trend toward the predicted effects across the full post-treatment window in high-contestation areas therefore reflects a genuine null rather than a truncated observation window.
+
+\section*{Discussion and Conclusion}
+
+In this paper, we explore how disasters generate subnational variation in violence across contested and non-contested areas, focusing on whether governments respond by increasing strategic violence against both rebel forces and civilians.
+
+%seek peaceful conflict-resolution approaches, engage in relief efforts, or whether disaster onset does not change conflic{\color{black} Our results establish important scope conditions for the formal model of \citet{sun2024strategic}. The model predicts that governments should decrease fighting and increase repression in disaster-affected contested areas to manage migration outflows. We find no support for these predictions. In high-contestation areas, disasters produce null effects on both repression and military activity. \color{red} These null results neither confirm nor refute the model's specific mechanisms. They may reflect ceiling effects on violence, insufficient statistical power given the shorter panel, or simply that the theorized dynamics do not operate as predicted. \color{black} In low-contestation areas, which the model does not explicitly address, disasters trigger substantial increases in both forms of state violence. These findings suggest that the model's theoretical scope, focused on territories where active fighting is already underway, misses the contexts where disasters most consequentially reshape conflict dynamics. The strongest effects emerge precisely in the low-contestation areas that the model does not address.}
+
+
+We find that disasters indeed have heterogeneous effects on conflict dynamics. State responses to disasters do not align neatly with previous theoretical expectations and findings. In contested areas, military and repression activities do not exhibit any changes in the short- and medium-term. In non-contested areas, for which we had no clear theoretical expectations, state violence increases significantly, through both military confrontation and repression. Previously non-contested areas thus become new battlefronts, as territorial takeover events become more likely after disasters, suggesting that disasters weaken government territorial control and create windows of opportunity for rebel group advances in in previously firmly government-controlled areas.  
+
+Our work qualifies \citeauthor{sun2024strategic}'s \citeyearpar{sun2024strategic} theoretical model, which treats frontlines as static and rebel behavior as mechanistic, and does not consider how disaster fallout can shift the geography of contestation. Our analysis of territorial takeover events suggests that disasters shift where governments and rebel groups intensify their military engagement and where governments engage in heightened repression. Disasters in low-contestation areas produce significant increases in territorial takeover events, indicating that disasters may be converting previously stable areas into sites of active contestation between government and non-state armed actors, as disaster-related disruptions reduce the costs of contestation \citep{Eastin14032016}, increase population vulnerability to recruitment \citep{barnett2007climate}, and make relief resources potential targets \citep{ide2020multi, wood2016responding}.
+
+{\color{black} The pooled territorial takeover results, while statistically significant in our baseline specification, are not robust to some alternative model specifications (see Appendix~\ref{ap:robustness}). However, when we disaggregate takeover events by actor identities---government versus rebels, we find that both rebel takeovers and government regains increase individually and significantly in low-contestation areas (Appendix~\ref{ap:robustness}, Table~\ref{tab:terr_disagg}). This suggests that disasters may prompt a two-way territorial contest in which rebels exploit vulnerabilities to seize territory, while governments respond to retake it. The pooled measure averages across all treatment periods, likely obscuring the meaningful effects concentrated in later months.}
+
+{\color{black} 
+% Several factors may explain our divergent findings. \citeauthor{sun2024strategic}'s \citeyearpar{sun2024strategic} theoretical framework} does not account for how the fallouts of disaster shift the geography of territorial contestation. While disasters open windows of opportunity for rebel contestation in previously non-contested areas, 
+
+In contrast, previously conflict-affected areas may not experience substantive changes to government violence, resulting in consistently stable conflict dynamics. 
+% When disasters strike previously stable areas within conflict-affected countries, such vulnerabilities create strategic opportunities for both the state and rebel groups. Physical infrastructure damage, governance disruptions, and population displacement weaken state forces' ability to maintain territorial control, creating opportunities for rebel groups to expand into previously inaccessible areas. Governments respond reactively with military deployments and preemptive repression to defend newly vulnerable territories. Meanwhile, in areas already experiencing high levels of violence, disasters add little to existing conflict dynamics.
+% In highly contested areas, by contrast, disasters produce minimal changes in conflict dynamics. Violence levels, territorial control, and government repression all remain relatively stable. 
+Substantial decreases in displacement in these areas suggest that other factors {\color{black} dominate the effects of environmental shocks. Previous violence may have already displaced the most mobile populations \citep{engel2007displacement,melander2009new}, disaster-related infrastructure damage may make movement more dangerous \citep{gray_mueller2012}, and the absence of compounding state violence (unlike in low-contestation areas) may render disasters alone insufficient to trigger further outflows \citep{abel2019,beine_parsons2015}.}
+
+{\color{black} Taken together, our findings suggest that} disasters do not simply intensify or de-escalate civil wars. Instead, they {\color{black} may} geographically reallocate conflict by converting previously stable areas into contested territories. Our work complements \citet{zhao_2025}, who explore how disasters allow governments to consolidate control {\color{black} by exploiting rebel weakness}.
+More broadly, we contribute to an emerging scholarship on the consequences of disasters in armed conflicts. \citet{amarasinghe2025disasters} demonstrate that disasters redistribute conflict from directly affected localities to neighboring districts, as combatants' strategically reallocate effort toward areas with higher rent-seeking opportunities. Our results suggest that this redistribution of violence can also form new frontlines, rather than mere spillovers. Together, these findings suggest that the policy-relevant question is not whether disasters increase or decrease violence, but where and how they redirect it.}
+
+Our findings carry important policy implications. Aid organizations should anticipate violence expanding into previously stable disaster-affected zones and prepare for displacement originating from government-controlled areas, not only pre-existing conflict zones. Failing to recognize these shifting dynamics risks exposing humanitarian workers to newly escalating violence and leaving displaced populations underserved.
+
+
+
+{\color{black} Looking ahead,} future research should consider how territorial control is distributed before and after a disaster. Given that both the government and rebels respond dynamically to disasters, {\color{black} understanding how they re-evaluate which areas to prioritize in the aftermath of environmental shocks is essential. The geographic reallocation of conflict documented here also raises questions about longer-term dynamics: whether disaster-opened fronts persist after recovery, and whether humanitarian consequences compound as newly displaced populations encounter violence in areas previously considered safe.}
+
+\bibliography{bib}
+
+\newpage
+\setcounter{page}{1}
+% Configure appendix numbering
+\setcounter{section}{0}
+\renewcommand{\thesection}{\Alph{section}}
+\renewcommand{\thesubsection}{\Alph{section}.\arabic{subsection}}
+\renewcommand{\thefigure}{\Alph{section}.\arabic{figure}}
+\renewcommand{\thetable}{\Alph{section}.\arabic{table}}
+
+% Modify section format to include "Appendix" prefix
+\titleformat{\section}{\sffamily\bfseries\large\raggedright}{Appendix \thesection:}{0.5em}{\MakeTextUppercase{#1}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\singlespacing
+
+
+\section{Corresponding Tables}\label{ap:maintabs}
+
+This section presents the complete regression tables corresponding to the difference-in-differences event study estimates visualized in Figures \ref{fig:rep}--\ref{fig:idp}. Each table reports the average treatment effect on the treated (ATT) for every pre- and post-treatment time period, along with standard errors and 95\% confidence intervals computed using wild bootstrap clustered at the administrative level 1 unit. Tables are organized by outcome variable and stratified by territorial contestation level (low versus high). The ``Time'' column indicates periods relative to disaster occurrence, where negative values represent pre-treatment periods and positive values represent post-treatment periods. These detailed estimates allow readers to assess the magnitude, statistical significance, and temporal dynamics of disaster effects across different contexts.
+
+\subsection{Repression}
+
+
+\begin{longtable}{cccccc}
+\caption{DiD Results: Repression - Low Contestation} \label{tab:rep_low} \\
+\toprule
+Time & ATT & Std. Error & CI Lower & CI Upper & Period \\
+\midrule
+\endfirsthead
+\multicolumn{6}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+Time & ATT & Std. Error & CI Lower & CI Upper & Period \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+-9 & -1.3244 & 1.1060 & -3.4922 & 0.8434 & Pre \\
+-8 & -0.2442 & 0.6157 & -1.4510 & 0.9626 & Pre \\
+-7 & 0.2237 & 0.4223 & -0.6040 & 1.0514 & Pre \\
+-6 & 0.5855 & 0.4380 & -0.2730 & 1.4440 & Pre \\
+-5 & -0.1312 & 0.1659 & -0.4564 & 0.1940 & Pre \\
+-4 & -0.6306 & 0.5472 & -1.7031 & 0.4419 & Pre \\
+-3 & -0.0048 & 0.5965 & -1.1739 & 1.1643 & Pre \\
+-2 & 0.7127 & 0.4071 & -0.0852 & 1.5106 & Pre \\
+-1 & -0.5794 & 0.2975 & -1.1625 & 0.0037 & Pre \\
+0 & 0.4406 & 0.2383 & -0.0265 & 0.9077 & Post \\
+1 & 0.1468 & 0.3817 & -0.6013 & 0.8949 & Post \\
+2 & 0.4195 & 0.2890 & -0.1469 & 0.9859 & Post \\
+3 & 0.2354 & 0.2197 & -0.1952 & 0.6660 & Post \\
+4 & 1.4120 & 0.7303 & -0.0194 & 2.8434 & Post \\
+5 & 0.4799 & 0.1830 & 0.1212 & 0.8386 & Post \\
+6 & 0.5715 & 0.2473 & 0.0868 & 1.0562 & Post \\
+7 & 0.6815 & 0.3047 & 0.0843 & 1.2787 & Post \\
+8 & 0.9326 & 0.2212 & 0.4990 & 1.3662 & Post \\
+9 & 0.9142 & 0.2278 & 0.4677 & 1.3607 & Post \\
+10 & 0.7811 & 0.2433 & 0.3042 & 1.2580 & Post \\
+11 & 0.9403 & 0.2329 & 0.4838 & 1.3968 & Post \\
+12 & 0.8821 & 0.2243 & 0.4425 & 1.3217 & Post \\
+13 & 0.9370 & 0.2475 & 0.4519 & 1.4221 & Post \\
+14 & 0.8856 & 0.2411 & 0.4130 & 1.3582 & Post \\
+15 & 0.8976 & 0.2253 & 0.4560 & 1.3392 & Post \\
+16 & 0.8338 & 0.2305 & 0.3820 & 1.2856 & Post \\
+17 & 0.9300 & 0.2347 & 0.4700 & 1.3900 & Post \\
+18 & 0.9144 & 0.2286 & 0.4663 & 1.3625 & Post \\
+19 & 0.6327 & 0.2487 & 0.1452 & 1.1202 & Post \\
+20 & 0.9580 & 0.2409 & 0.4858 & 1.4302 & Post \\
+21 & 0.8234 & 0.2450 & 0.3432 & 1.3036 & Post \\
+22 & 1.0526 & 0.2503 & 0.5620 & 1.5432 & Post \\
+23 & 0.9125 & 0.2536 & 0.4154 & 1.4096 & Post \\
+24 & 0.9643 & 0.2620 & 0.4508 & 1.4778 & Post \\
+25 & 0.8102 & 0.2960 & 0.2300 & 1.3904 & Post \\
+26 & 1.0113 & 0.2524 & 0.5166 & 1.5060 & Post \\
+27 & 1.0262 & 0.2826 & 0.4723 & 1.5801 & Post \\
+28 & 1.0152 & 0.3256 & 0.3770 & 1.6534 & Post \\
+29 & 1.0186 & 0.3217 & 0.3881 & 1.6491 & Post \\
+30 & 0.5297 & 0.3514 & -0.1590 & 1.2184 & Post \\
+31 & 0.5340 & 0.3558 & -0.1634 & 1.2314 & Post \\
+32 & 0.6623 & 0.4252 & -0.1711 & 1.4957 & Post \\
+33 & 0.9585 & 0.5847 & -0.1875 & 2.1045 & Post \\
+\end{longtable}
+
+\begin{longtable}{cccccc}
+\caption{DiD Results: Repression - High Contestation} \label{tab:rep_high} \\
+\toprule
+Time & ATT & Std. Error & CI Lower & CI Upper & Period \\
+\midrule
+\endfirsthead
+\multicolumn{6}{c}{{\bfseries \tablename\ \thetable{} -- continued}} \\
+\toprule
+Time & ATT & Std. Error & CI Lower & CI Upper & Period \\
+\midrule
+\endhead
+-9 & 1.2674 & 1.2860 & -1.2532 & 3.7880 & Pre \\
+-5 & -0.2131 & 2.2596 & -4.6419 & 4.2157 & Pre \\
+-4 & 2.6753 & 4.0200 & -5.2039 & 10.5545 & Pre \\
+-3 & 0.4751 & 1.4204 & -2.3089 & 3.2591 & Pre \\
+-2 & 0.5272 & 0.9219 & -1.2797 & 2.3341 & Pre \\
+-1 & 0.1336 & 1.4330 & -2.6751 & 2.9423 & Pre \\
+0 & 1.3931 & 2.1380 & -2.7974 & 5.5836 & Post \\
+1 & -0.2027 & 1.3563 & -2.8610 & 2.4556 & Post \\
+2 & -2.2290 & 2.3225 & -6.7811 & 2.3231 & Post \\
+3 & 0.6006 & 1.3636 & -2.0721 & 3.2733 & Post \\
+4 & 0.8576 & 0.9982 & -1.0989 & 2.8141 & Post \\
+5 & -0.0817 & 0.7427 & -1.5374 & 1.3740 & Post \\
+6 & -0.1304 & 0.4374 & -0.9877 & 0.7269 & Post \\
+7 & 1.7522 & 4.4742 & -7.0172 & 10.5216 & Post \\
+8 & 2.2913 & 1.6312 & -0.9058 & 5.4884 & Post \\
+9 & -0.8273 & 2.1025 & -4.9482 & 3.2936 & Post \\
+10 & 0.3591 & 1.4449 & -2.4729 & 3.1911 & Post \\
+11 & 0.7978 & 1.3078 & -1.7655 & 3.3611 & Post \\
+12 & 0.7671 & 1.4497 & -2.0743 & 3.6085 & Post \\
+13 & 0.7050 & 1.3801 & -2.0000 & 3.4100 & Post \\
+14 & -2.4230 & 2.5103 & -7.3432 & 2.4972 & Post \\
+15 & 1.7041 & 1.4270 & -1.0928 & 4.5010 & Post \\
+16 & -1.2048 & 3.0648 & -7.2118 & 4.8022 & Post \\
+17 & 0.2827 & 1.4653 & -2.5893 & 3.1547 & Post \\
+18 & 0.1380 & 1.4241 & -2.6532 & 2.9292 & Post \\
+19 & -0.4371 & 2.3966 & -5.1344 & 4.2602 & Post \\
+20 & 0.8390 & 1.4115 & -1.9275 & 3.6055 & Post \\
+21 & -3.4879 & 3.7415 & -10.8212 & 3.8454 & Post \\
+22 & 0.0616 & 1.8712 & -3.6059 & 3.7291 & Post \\
+23 & 0.9626 & 1.9584 & -2.8759 & 4.8011 & Post \\
+24 & 0.6468 & 1.7712 & -2.8247 & 4.1183 & Post \\
+25 & -0.8165 & 2.0977 & -4.9280 & 3.2950 & Post \\
+26 & -1.4522 & 2.0729 & -5.5151 & 2.6107 & Post \\
+27 & 0.8405 & 1.8318 & -2.7498 & 4.4308 & Post \\
+28 & 0.8065 & 3.8943 & -6.8263 & 8.4393 & Post \\
+29 & 3.9817 & 3.6186 & -3.1108 & 11.0742 & Post \\
+30 & 3.2513 & 4.6990 & -5.9587 & 12.4613 & Post \\
+31 & 4.8143 & 3.9587 & -2.9448 & 12.5734 & Post \\
+32 & 2.9318 & 3.8310 & -4.5770 & 10.4406 & Post \\
+\end{longtable}
+
+\subsection{Military Activity}
+
+\begin{longtable}{cccccc}
+\caption{DiD Results: Military - Low Contestation} \label{tab:mil_low} \\
+\toprule
+Time & ATT & Std. Error & CI Lower & CI Upper & Period \\
+\midrule
+\endfirsthead
+\multicolumn{6}{c}{{\bfseries \tablename\ \thetable{} -- continued}} \\
+\toprule
+Time & ATT & Std. Error & CI Lower & CI Upper & Period \\
+\midrule
+\endhead
+-9 & -0.5144 & 0.1797 & -0.8666 & -0.1622 & Pre \\
+-8 & 0.0301 & 0.1784 & -0.3196 & 0.3798 & Pre \\
+-7 & 0.3964 & 0.2535 & -0.1005 & 0.8933 & Pre \\
+-6 & 0.2330 & 0.2204 & -0.1990 & 0.6650 & Pre \\
+-5 & -0.0189 & 0.0708 & -0.1577 & 0.1199 & Pre \\
+-4 & -0.1695 & 0.1072 & -0.3796 & 0.0406 & Pre \\
+-3 & 0.0564 & 0.1292 & -0.1968 & 0.3096 & Pre \\
+-2 & 0.2673 & 0.4320 & -0.5794 & 1.1140 & Pre \\
+-1 & -0.4177 & 0.2204 & -0.8497 & 0.0143 & Pre \\
+0 & 0.2149 & 0.0907 & 0.0371 & 0.3927 & Post \\
+1 & 0.3920 & 0.2498 & -0.0976 & 0.8816 & Post \\
+2 & 0.4918 & 0.2817 & -0.0603 & 1.0439 & Post \\
+3 & 0.2324 & 0.0729 & 0.0895 & 0.3753 & Post \\
+4 & 0.6810 & 0.3050 & 0.0832 & 1.2788 & Post \\
+5 & 0.3455 & 0.1124 & 0.1252 & 0.5658 & Post \\
+6 & 0.4686 & 0.1354 & 0.2032 & 0.7340 & Post \\
+7 & 0.3505 & 0.0890 & 0.1761 & 0.5249 & Post \\
+8 & 0.5567 & 0.0749 & 0.4099 & 0.7035 & Post \\
+9 & 0.5344 & 0.0795 & 0.3786 & 0.6902 & Post \\
+10 & 0.4200 & 0.0880 & 0.2475 & 0.5925 & Post \\
+11 & 0.5423 & 0.0806 & 0.3843 & 0.7003 & Post \\
+12 & 0.5004 & 0.0798 & 0.3440 & 0.6568 & Post \\
+13 & 0.5486 & 0.0781 & 0.3955 & 0.7017 & Post \\
+14 & 0.5188 & 0.0829 & 0.3563 & 0.6813 & Post \\
+15 & 0.5856 & 0.0988 & 0.3920 & 0.7792 & Post \\
+16 & 0.4614 & 0.0838 & 0.2972 & 0.6256 & Post \\
+17 & 0.5491 & 0.0733 & 0.4054 & 0.6928 & Post \\
+18 & 0.5307 & 0.0737 & 0.3862 & 0.6752 & Post \\
+19 & 0.4044 & 0.0821 & 0.2435 & 0.5653 & Post \\
+20 & 0.5760 & 0.0799 & 0.4194 & 0.7326 & Post \\
+21 & 0.5208 & 0.0812 & 0.3616 & 0.6800 & Post \\
+22 & 0.6062 & 0.0860 & 0.4376 & 0.7748 & Post \\
+23 & 0.5502 & 0.0740 & 0.4052 & 0.6952 & Post \\
+24 & 0.5618 & 0.0891 & 0.3872 & 0.7364 & Post \\
+25 & 0.4937 & 0.0940 & 0.3095 & 0.6779 & Post \\
+26 & 0.6063 & 0.0887 & 0.4324 & 0.7802 & Post \\
+27 & 0.6032 & 0.0903 & 0.4262 & 0.7802 & Post \\
+28 & 0.5380 & 0.1026 & 0.3369 & 0.7391 & Post \\
+29 & 0.5424 & 0.1060 & 0.3346 & 0.7502 & Post \\
+30 & 0.4011 & 0.1099 & 0.1857 & 0.6165 & Post \\
+31 & 0.4016 & 0.1105 & 0.1850 & 0.6182 & Post \\
+32 & 0.4740 & 0.1405 & 0.1986 & 0.7494 & Post \\
+33 & 0.6449 & 0.1909 & 0.2707 & 1.0191 & Post \\
+\end{longtable}
+
+\begin{longtable}{cccccc}
+\caption{DiD Results: Military - High Contestation} \label{tab:mil_high} \\
+\toprule
+Time & ATT & Std. Error & CI Lower & CI Upper & Period \\
+\midrule
+\endfirsthead
+\multicolumn{6}{c}{{\bfseries \tablename\ \thetable{} -- continued}} \\
+\toprule
+Time & ATT & Std. Error & CI Lower & CI Upper & Period \\
+\midrule
+\endhead
+-9 & 0.5166 & 0.5859 & -0.6318 & 1.6650 & Pre \\
+-5 & -0.1302 & 0.4238 & -0.9608 & 0.7004 & Pre \\
+-4 & 0.4162 & 0.5336 & -0.6297 & 1.4621 & Pre \\
+-3 & -0.1882 & 0.4778 & -1.1247 & 0.7483 & Pre \\
+-2 & 0.3980 & 0.4003 & -0.3866 & 1.1826 & Pre \\
+-1 & -0.0661 & 0.4185 & -0.8864 & 0.7542 & Pre \\
+0 & 1.0649 & 1.2471 & -1.3794 & 3.5092 & Post \\
+1 & -0.3807 & 0.4613 & -1.2848 & 0.5234 & Post \\
+2 & -0.4406 & 0.3916 & -1.2081 & 0.3269 & Post \\
+3 & 0.3373 & 0.4909 & -0.6249 & 1.2995 & Post \\
+4 & 0.2623 & 0.5596 & -0.8345 & 1.3591 & Post \\
+5 & -0.1201 & 0.2776 & -0.6642 & 0.4240 & Post \\
+6 & 0.1579 & 0.3211 & -0.4715 & 0.7873 & Post \\
+7 & 0.8086 & 1.1402 & -1.4262 & 3.0434 & Post \\
+8 & 0.4878 & 0.5593 & -0.6084 & 1.5840 & Post \\
+9 & -0.2442 & 0.3121 & -0.8559 & 0.3675 & Post \\
+10 & 0.3872 & 0.3481 & -0.2951 & 1.0695 & Post \\
+11 & 1.0187 & 0.4113 & 0.2126 & 1.8248 & Post \\
+12 & 0.3816 & 0.4639 & -0.5276 & 1.2908 & Post \\
+13 & 0.0972 & 0.3510 & -0.5908 & 0.7852 & Post \\
+14 & -0.2305 & 0.3307 & -0.8787 & 0.4177 & Post \\
+15 & 0.5707 & 0.3232 & -0.0628 & 1.2042 & Post \\
+16 & 1.1196 & 0.8378 & -0.5225 & 2.7617 & Post \\
+17 & -0.0459 & 0.3284 & -0.6896 & 0.5978 & Post \\
+18 & 0.1737 & 0.4159 & -0.6415 & 0.9889 & Post \\
+19 & 2.1045 & 0.4192 & 1.2829 & 2.9261 & Post \\
+20 & 0.2040 & 0.4472 & -0.6725 & 1.0805 & Post \\
+21 & 0.3199 & 0.8526 & -1.3512 & 1.9910 & Post \\
+22 & 0.3241 & 0.4908 & -0.6379 & 1.2861 & Post \\
+23 & 1.4171 & 0.8437 & -0.2366 & 3.0708 & Post \\
+24 & 0.4757 & 0.6228 & -0.7450 & 1.6964 & Post \\
+25 & 0.0681 & 0.6273 & -1.1614 & 1.2976 & Post \\
+26 & -0.0252 & 0.5647 & -1.1320 & 1.0816 & Post \\
+27 & 0.7059 & 0.8983 & -1.0548 & 2.4666 & Post \\
+28 & 0.9350 & 1.0996 & -1.2202 & 3.0902 & Post \\
+29 & 1.7772 & 2.2910 & -2.7132 & 6.2676 & Post \\
+30 & 1.5729 & 2.3050 & -2.9449 & 6.0907 & Post \\
+31 & 0.5376 & 1.0575 & -1.5351 & 2.6103 & Post \\
+32 & 0.6673 & 1.4298 & -2.1351 & 3.4697 & Post \\
+\end{longtable}
+
+
+\subsection{Territorial Takeover Events}
+
+\begin{longtable}{cccccc}
+\caption{DiD Results: Territorial - Low Contestation} \label{tab:terr_low} \\
+\toprule
+Time & ATT & Std. Error & CI Lower & CI Upper & Period \\
+\midrule
+\endfirsthead
+\multicolumn{6}{c}{{\bfseries \tablename\ \thetable{} -- continued}} \\
+\toprule
+Time & ATT & Std. Error & CI Lower & CI Upper & Period \\
+\midrule
+\endhead
+-9 & -0.0521 & 0.0420 & -0.1344 & 0.0302 & Pre \\
+-8 & -0.0044 & 0.0264 & -0.0561 & 0.0473 & Pre \\
+-7 & 0.0087 & 0.0146 & -0.0199 & 0.0373 & Pre \\
+-6 & 0.0199 & 0.0107 & -0.0011 & 0.0409 & Pre \\
+-5 & -0.0091 & 0.0064 & -0.0216 & 0.0034 & Pre \\
+-4 & -0.0260 & 0.0212 & -0.0676 & 0.0156 & Pre \\
+-3 & 0.0071 & 0.0254 & -0.0427 & 0.0569 & Pre \\
+-2 & -0.0419 & 0.1770 & -0.3888 & 0.3050 & Pre \\
+-1 & -0.0837 & 0.0806 & -0.2417 & 0.0743 & Pre \\
+0 & -0.0090 & 0.0127 & -0.0339 & 0.0159 & Post \\
+1 & 0.0984 & 0.1350 & -0.1662 & 0.3630 & Post \\
+2 & -0.0013 & 0.0101 & -0.0211 & 0.0185 & Post \\
+3 & -0.0026 & 0.0104 & -0.0230 & 0.0178 & Post \\
+4 & 0.0455 & 0.0269 & -0.0072 & 0.0982 & Post \\
+5 & 0.0073 & 0.0075 & -0.0074 & 0.0220 & Post \\
+6 & -0.0018 & 0.0110 & -0.0234 & 0.0198 & Post \\
+7 & -0.0010 & 0.0170 & -0.0343 & 0.0323 & Post \\
+8 & 0.0301 & 0.0085 & 0.0134 & 0.0468 & Post \\
+9 & 0.0268 & 0.0088 & 0.0096 & 0.0440 & Post \\
+10 & 0.0245 & 0.0105 & 0.0039 & 0.0451 & Post \\
+11 & 0.0279 & 0.0092 & 0.0099 & 0.0459 & Post \\
+12 & 0.0274 & 0.0095 & 0.0088 & 0.0460 & Post \\
+13 & 0.0260 & 0.0086 & 0.0091 & 0.0429 & Post \\
+14 & 0.0255 & 0.0090 & 0.0079 & 0.0431 & Post \\
+15 & 0.0280 & 0.0086 & 0.0111 & 0.0449 & Post \\
+16 & 0.0238 & 0.0092 & 0.0058 & 0.0418 & Post \\
+17 & 0.0295 & 0.0088 & 0.0123 & 0.0467 & Post \\
+18 & 0.0294 & 0.0086 & 0.0125 & 0.0463 & Post \\
+19 & 0.0230 & 0.0095 & 0.0044 & 0.0416 & Post \\
+20 & 0.0300 & 0.0090 & 0.0124 & 0.0476 & Post \\
+21 & 0.0290 & 0.0092 & 0.0110 & 0.0470 & Post \\
+22 & 0.0347 & 0.0097 & 0.0157 & 0.0537 & Post \\
+23 & 0.0316 & 0.0089 & 0.0142 & 0.0490 & Post \\
+24 & 0.0308 & 0.0103 & 0.0106 & 0.0510 & Post \\
+25 & 0.0303 & 0.0100 & 0.0107 & 0.0499 & Post \\
+26 & 0.0343 & 0.0091 & 0.0165 & 0.0521 & Post \\
+27 & 0.0305 & 0.0099 & 0.0111 & 0.0499 & Post \\
+28 & 0.0331 & 0.0156 & 0.0025 & 0.0637 & Post \\
+29 & 0.0306 & 0.0169 & -0.0025 & 0.0637 & Post \\
+30 & 0.0120 & 0.0089 & -0.0054 & 0.0294 & Post \\
+31 & 0.0156 & 0.0077 & 0.0005 & 0.0307 & Post \\
+32 & 0.0182 & 0.0087 & 0.0011 & 0.0353 & Post \\
+33 & 0.0232 & 0.0128 & -0.0019 & 0.0483 & Post \\
+\end{longtable}
+
+\begin{longtable}{cccccc}
+\caption{DiD Results: Territorial - High Contestation} \label{tab:terr_high} \\
+\toprule
+Time & ATT & Std. Error & CI Lower & CI Upper & Period \\
+\midrule
+\endfirsthead
+\multicolumn{6}{c}{{\bfseries \tablename\ \thetable{} -- continued}} \\
+\toprule
+Time & ATT & Std. Error & CI Lower & CI Upper & Period \\
+\midrule
+\endhead
+-9 & 0.0359 & 0.1139 & -0.1873 & 0.2591 & Pre \\
+-5 & -0.0417 & 0.0776 & -0.1938 & 0.1104 & Pre \\
+-4 & 0.0974 & 0.1258 & -0.1492 & 0.3440 & Pre \\
+-3 & -0.0258 & 0.0910 & -0.2042 & 0.1526 & Pre \\
+-2 & 0.0130 & 0.0760 & -0.1360 & 0.1620 & Pre \\
+-1 & 0.0406 & 0.1194 & -0.1934 & 0.2746 & Pre \\
+0 & 0.9433 & 0.9584 & -0.9352 & 2.8218 & Post \\
+1 & -0.0341 & 0.0377 & -0.1080 & 0.0398 & Post \\
+2 & -0.0738 & 0.0832 & -0.2369 & 0.0893 & Post \\
+3 & -0.0148 & 0.0327 & -0.0789 & 0.0493 & Post \\
+4 & -0.0202 & 0.0599 & -0.1376 & 0.0972 & Post \\
+5 & -0.0181 & 0.0729 & -0.1610 & 0.1248 & Post \\
+6 & -0.0050 & 0.0382 & -0.0799 & 0.0699 & Post \\
+7 & 0.0820 & 0.1216 & -0.1563 & 0.3203 & Post \\
+8 & -0.0082 & 0.0474 & -0.1011 & 0.0847 & Post \\
+9 & 0.2031 & 0.2450 & -0.2771 & 0.6833 & Post \\
+10 & -0.0520 & 0.0595 & -0.1686 & 0.0646 & Post \\
+11 & -0.0335 & 0.0399 & -0.1117 & 0.0447 & Post \\
+12 & 0.0006 & 0.0387 & -0.0753 & 0.0765 & Post \\
+13 & -0.0427 & 0.0622 & -0.1646 & 0.0792 & Post \\
+14 & -0.0518 & 0.0599 & -0.1692 & 0.0656 & Post \\
+15 & -0.0615 & 0.0516 & -0.1626 & 0.0396 & Post \\
+16 & -0.0464 & 0.0516 & -0.1475 & 0.0547 & Post \\
+17 & -0.0196 & 0.0456 & -0.1090 & 0.0698 & Post \\
+18 & -0.0990 & 0.0644 & -0.2252 & 0.0272 & Post \\
+19 & -0.0054 & 0.0399 & -0.0836 & 0.0728 & Post \\
+20 & -0.0971 & 0.0848 & -0.2633 & 0.0691 & Post \\
+21 & -0.0783 & 0.1014 & -0.2770 & 0.1204 & Post \\
+22 & -0.0366 & 0.0585 & -0.1513 & 0.0781 & Post \\
+23 & -0.0802 & 0.0751 & -0.2274 & 0.0670 & Post \\
+24 & -0.0163 & 0.0516 & -0.1174 & 0.0848 & Post \\
+25 & -0.1494 & 0.0980 & -0.3415 & 0.0427 & Post \\
+26 & -0.0473 & 0.0965 & -0.2364 & 0.1418 & Post \\
+27 & -0.0966 & 0.0756 & -0.2448 & 0.0516 & Post \\
+28 & -0.0381 & 0.1028 & -0.2396 & 0.1634 & Post \\
+29 & -0.0332 & 0.0706 & -0.1716 & 0.1052 & Post \\
+30 & -0.1723 & 0.1029 & -0.3740 & 0.0294 & Post \\
+31 & 0.0107 & 0.0684 & -0.1234 & 0.1448 & Post \\
+32 & -0.1320 & 0.1207 & -0.3686 & 0.1046 & Post \\
+\end{longtable}
+
+
+\subsection{Internally Displaced Persons}
+
+\begin{longtable}{cccccc}
+\caption{DiD Results: Displacement - Low Contestation} \label{tab:idp_low} \\
+\toprule
+Time & ATT & Std. Error & CI Lower & CI Upper & Period \\
+\midrule
+\endfirsthead
+\multicolumn{6}{c}{{\bfseries \tablename\ \thetable{} -- continued}} \\
+\toprule
+Time & ATT & Std. Error & CI Lower & CI Upper & Period \\
+\midrule
+\endhead
+-9 & 26055.89 & 11807.79 & 2912.62 & 49199.16 & Pre \\
+-8 & 26418.10 & 7913.41 & 10907.82 & 41928.38 & Pre \\
+-7 & 32237.56 & 10728.49 & 11209.72 & 53265.40 & Pre \\
+-6 & -9639.15 & 10421.56 & -30065.41 & 10787.11 & Pre \\
+-5 & 14970.30 & 10546.33 & -5700.51 & 35641.11 & Pre \\
+-4 & 13142.11 & 8112.37 & -2758.14 & 29042.36 & Pre \\
+-3 & -13519.50 & 10223.71 & -33557.97 & 6518.97 & Pre \\
+-2 & 8559.68 & 11292.60 & -13573.82 & 30693.18 & Pre \\
+-1 & 7837.61 & 10141.84 & -12040.40 & 27715.62 & Pre \\
+0 & -12705.13 & 4710.84 & -21938.38 & -3471.88 & Post \\
+1 & 2340.02 & 3350.45 & -4226.86 & 8906.90 & Post \\
+2 & 2346.71 & 5163.06 & -7772.89 & 12466.31 & Post \\
+3 & 17321.76 & 13709.95 & -9549.74 & 44193.26 & Post \\
+4 & -3925.07 & 5086.55 & -13894.71 & 6044.57 & Post \\
+5 & -433.33 & 4724.77 & -9693.88 & 8827.22 & Post \\
+6 & 12242.27 & 13751.69 & -14711.04 & 39195.58 & Post \\
+7 & -1262.74 & 4636.19 & -10349.67 & 7824.19 & Post \\
+8 & 22537.77 & 20443.82 & -17532.12 & 62607.66 & Post \\
+9 & -23479.05 & 8338.63 & -39822.76 & -7135.34 & Post \\
+10 & -24504.47 & 9597.54 & -43315.65 & -5693.29 & Post \\
+11 & -44889.54 & 15563.48 & -75393.96 & -14385.12 & Post \\
+12 & -14943.77 & 18788.49 & -51769.21 & 21881.67 & Post \\
+13 & 24732.13 & 24637.31 & -23556.99 & 73021.25 & Post \\
+14 & 82738.59 & 51684.87 & -18563.76 & 184040.94 & Post \\
+15 & 199382.93 & 46284.36 & 108665.58 & 290100.28 & Post \\
+16 & 220205.21 & 45410.24 & 131201.14 & 309209.28 & Post \\
+17 & 165345.67 & 46525.77 & 74155.16 & 256536.18 & Post \\
+18 & 253488.56 & 52674.42 & 150246.70 & 356730.42 & Post \\
+19 & 276162.33 & 61491.58 & 155638.83 & 396685.83 & Post \\
+20 & 295334.32 & 56688.64 & 184224.59 & 406444.05 & Post \\
+21 & 393520.31 & 70532.98 & 255275.67 & 531764.95 & Post \\
+22 & -42131.62 & 17061.95 & -75573.04 & -8690.20 & Post \\
+23 & 267188.84 & 72438.50 & 125209.38 & 409168.30 & Post \\
+24 & -54713.12 & 14454.74 & -83044.41 & -26381.83 & Post \\
+25 & -54174.44 & 16501.60 & -86517.58 & -21831.30 & Post \\
+26 & -48881.95 & 13309.26 & -74968.10 & -22795.80 & Post \\
+27 & -34360.09 & 21105.13 & -75726.14 & 7005.96 & Post \\
+28 & -36926.24 & 21300.59 & -78675.40 & 4822.92 & Post \\
+29 & -47670.42 & 19138.53 & -85181.94 & -10158.90 & Post \\
+30 & 738944.82 & 111714.08 & 519985.22 & 957904.42 & Post \\
+31 & 1168359.74 & 171890.69 & 831454.00 & 1505265.48 & Post \\
+\end{longtable}
+
+\begin{longtable}{cccccc}
+\caption{DiD Results: Displacement - High Contestation} \label{tab:idp_high} \\
+\toprule
+Time & ATT & Std. Error & CI Lower & CI Upper & Period \\
+\midrule
+\endfirsthead
+\multicolumn{6}{c}{{\bfseries \tablename\ \thetable{} -- continued}} \\
+\toprule
+Time & ATT & Std. Error & CI Lower & CI Upper & Period \\
+\midrule
+\endhead
+-9 & -11254.88 & 25227.51 & -60700.80 & 38191.04 & Pre \\
+-5 & 18132.05 & 16907.79 & -15007.22 & 51271.32 & Pre \\
+-4 & -50514.59 & 21158.32 & -91984.90 & -9044.28 & Pre \\
+-3 & 68617.12 & 19020.22 & 31337.49 & 105896.75 & Pre \\
+-2 & -13922.99 & 15495.32 & -44293.82 & 16447.84 & Pre \\
+-1 & 13236.46 & 12065.73 & -10412.37 & 36885.29 & Pre \\
+0 & -70909.82 & 65052.90 & -198413.50 & 56593.86 & Post \\
+1 & -31920.23 & 16128.82 & -63532.72 & -307.74 & Post \\
+2 & -34689.42 & 20124.06 & -74132.58 & 4753.74 & Post \\
+3 & -81741.51 & 40871.09 & -161848.85 & -1634.17 & Post \\
+4 & -55769.47 & 34601.57 & -123588.55 & 12049.61 & Post \\
+5 & -87814.31 & 35931.12 & -158239.31 & -17389.31 & Post \\
+6 & -53905.78 & 28593.80 & -109949.63 & 2138.07 & Post \\
+7 & -53980.14 & 50098.96 & -152174.10 & 44213.82 & Post \\
+8 & -136397.23 & 49055.47 & -232545.95 & -40248.51 & Post \\
+9 & -134881.31 & 44737.25 & -222566.32 & -47196.30 & Post \\
+10 & -83100.06 & 69674.25 & -219661.59 & 53461.47 & Post \\
+11 & -166005.41 & 52810.49 & -269513.97 & -62496.85 & Post \\
+12 & -194589.98 & 58927.65 & -310088.17 & -79091.79 & Post \\
+13 & -144812.83 & 48060.99 & -239012.37 & -50613.29 & Post \\
+14 & -173510.79 & 63858.09 & -298672.65 & -48348.93 & Post \\
+15 & -306049.99 & 69276.37 & -441831.68 & -170268.30 & Post \\
+16 & -284942.12 & 58061.75 & -398743.15 & -171141.09 & Post \\
+17 & -188800.71 & 100284.06 & -385357.47 & 7756.05 & Post \\
+18 & -208281.59 & 74672.13 & -354638.96 & -61924.22 & Post \\
+19 & -302745.68 & 78951.84 & -457491.29 & -148000.07 & Post \\
+20 & -271391.01 & 77116.61 & -422539.57 & -120242.45 & Post \\
+21 & -296956.04 & 81587.22 & -456867.00 & -137045.08 & Post \\
+22 & -392234.86 & 94392.83 & -577244.81 & -207224.91 & Post \\
+23 & -327893.08 & 79548.14 & -483807.43 & -171978.73 & Post \\
+24 & -356115.49 & 97625.35 & -547461.18 & -164769.80 & Post \\
+25 & -158346.31 & 83270.56 & -321556.61 & 4863.99 & Post \\
+26 & -334965.12 & 75635.14 & -483209.99 & -186720.25 & Post \\
+27 & -452077.91 & 100947.73 & -649935.46 & -254220.36 & Post \\
+28 & -295100.27 & 158229.99 & -605231.05 & 15030.51 & Post \\
+29 & -304140.89 & 160235.64 & -618202.74 & 9920.96 & Post \\
+30 & -384548.16 & 137857.92 & -654749.68 & -114346.64 & Post \\
+31 & -2509.57 & 259110.86 & -510366.86 & 505347.72 & Post \\
+\end{longtable}
+
+
+
+
+
+
+\section{Robustness}\label{ap:robustness}
+
+This appendix presents systematic robustness checks for all main analyses reported in the paper. Our baseline specifications use the \cite{callaway_santanna2021} doubly robust difference-in-differences estimator with not-yet-treated units as controls, classifying administrative units as high or low contestation based on whether their predicted conflict risk exceeds the within-country mean. To assess the sensitivity of our findings to these choices, we implement six alternative specifications for each outcome variable:
+
+\noindent \textbf{Specification Variations:}
+
+\begin{enumerate}
+\item \textbf{Baseline (Column 1):} Our main specification using the doubly robust estimator, not-yet-treated controls, and within-country mean contestation threshold
+\item \textbf{Universal Mean Threshold (Column 2):} Uses the universal mean of Predicted Conflict Risk scores across all countries rather than country-specific means to classify contestation levels
+\item \textbf{Never-Treated Controls (Column 3):} Uses units that never receive disaster treatment as the control group instead of not-yet-treated units
+\item \textbf{Median Threshold (Column 4):} Classifies contestation using within-country median Predicted Conflict Risk scores rather than means
+\item \textbf{IPW Estimator (Column 5):} Uses inverse probability weighting instead of doubly robust estimation
+\item \textbf{Doubly Robust Confirmation (Column 6):} Replicates baseline using explicit doubly robust specification to confirm numerical stability
+\end{enumerate}
+
+For each outcome variable (repression, military activity, territorial events, displacement), we report the average post-treatment ATT (the average treatment effect) across all post-disaster periods. Standard errors are computed using wild bootstrap clustering at the administrative unit level. Tables are organized by contestation level (low vs. high) and outcome variable.
+
+Our main results are robust across specifications. For low contestation areas, disasters consistently produce significant increases in repression (0.67–0.94 additional deaths) and military activity (0.31–0.56 additional battles), with substantial displacement increases (8,424–105,521 additional IDPs) across most specifications. For high contestation areas, the null effects on violence and negative displacement effects (-118,264 to -208,636 IDPs) remain consistent. {\color{black} The pooled territorial takeover results show positive point estimates in low-contestation areas but lose statistical significance in some specifications. However, disaggregating into rebel takeovers and government regains reveals that both components are individually significant in low-contestation areas (Table~\ref{tab:terr_disagg}), suggesting the pooled insignificance reflects a power limitation rather than an absent effect.}
+
+
+
+\subsection{Low Contestation}
+
+\begin{table}[H]
+\centering
+\caption{Robustness Checks:  Repression  (Low  Contestation)}
+\label{tab:robust_ rep _ low }
+\begin{tabular}{lcccccc}
+\toprule
+ & (1) & (2) & (3) & (4) & (5) & (6) \\
+ & Baseline & Universal & Never & Median & IPW & Doubly \\
+ &  & Mean & Treated & Threshold &  & Robust \\
+\midrule
+Post-Treatment ATT &  0.798***  &  0.940***  &  0.799***  &  0.672*  &  0.798***  &  0.798***  \\
+ &  (0.309)  &  (0.318)  &  (0.308)  &  (0.400)  &  (0.309)  &  (0.306)  \\
+\midrule
+Control Group & Not Yet & Not Yet & Never & Not Yet & Not Yet & Not Yet \\
+ & Treated & Treated & Treated & Treated & Treated & Treated \\
+Threshold & Country & Universal & Country & Country & Country & Country \\
+ & Mean & Mean & Mean & Median & Mean & Mean \\
+Estimator & DR & DR & DR & DR & IPW & DR \\
+\bottomrule
+\end{tabular}\\
+Robust standard errors in parentheses. *** p$<$0.01, ** p$<$0.05, * p$<$0.10. Post-treatment ATT represents the average treatment effect across all post-treatment periods.
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\caption{Robustness Checks:  Military Activity  (Low  Contestation)}
+\label{tab:robust_ mil _ low }
+\begin{tabular}{lcccccc}
+\toprule
+ & (1) & (2) & (3) & (4) & (5) & (6) \\
+ & Baseline & Universal & Never & Median & IPW & Doubly \\
+ &  & Mean & Treated & Threshold &  & Robust \\
+\midrule
+Post-Treatment ATT &  0.496***  &  0.557***  &  0.496***  &  0.310  &  0.496***  &  0.496***  \\
+ &  (0.125)  &  (0.117)  &  (0.123)  &  (0.201)  &  (0.124)  &  (0.122)  \\
+\midrule
+Control Group & Not Yet & Not Yet & Never & Not Yet & Not Yet & Not Yet \\
+ & Treated & Treated & Treated & Treated & Treated & Treated \\
+Threshold & Country & Universal & Country & Country & Country & Country \\
+ & Mean & Mean & Mean & Median & Mean & Mean \\
+Estimator & DR & DR & DR & DR & IPW & DR \\
+\bottomrule
+\end{tabular}\\
+\floatnote{Robust standard errors in parentheses. *** p$<$0.01, ** p$<$0.05, * p$<$0.10. Post-treatment ATT represents the average treatment effect across all post-treatment periods.}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\caption{Robustness Checks:  Territorial Events  (Low  Contestation)}
+\label{tab:robust_ terr _ low }
+\begin{tabular}{lcccccc}
+\toprule
+ & (1) & (2) & (3) & (4) & (5) & (6) \\
+ & Baseline & Universal & Never & Median & IPW & Doubly \\
+ &  & Mean & Treated & Threshold &  & Robust \\
+\midrule
+Post-Treatment ATT &  0.025  &  0.029  &  0.025  &  0.032  &  0.025  &  0.025  \\
+ &  (0.025)  &  (0.023)  &  (0.025)  &  (0.072)  &  (0.026)  &  (0.025)  \\
+\midrule
+Control Group & Not Yet & Not Yet & Never & Not Yet & Not Yet & Not Yet \\
+ & Treated & Treated & Treated & Treated & Treated & Treated \\
+Threshold & Country & Universal & Country & Country & Country & Country \\
+ & Mean & Mean & Mean & Median & Mean & Mean \\
+Estimator & DR & DR & DR & DR & IPW & DR \\
+\bottomrule
+\end{tabular}\\
+\floatnote{Robust standard errors in parentheses. *** p$<$0.01, ** p$<$0.05, * p$<$0.10. Post-treatment ATT represents the average treatment effect across all post-treatment periods.}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\caption{Robustness Checks: Displacement (Low Contestation)}
+\label{tab:robust_idp_low}
+\begin{tabular}{lccccc}
+\toprule
+ & (1) & (2) & (3) & (4) & (5) \\
+ & Baseline & Never & Median & IPW & Doubly \\
+ &  & Treated & Threshold &  & Robust \\
+\midrule
+Post-Treatment ATT & 105520.995** & 105523.045** & 8423.585 & 105520.995** & 105520.995** \\
+ & (47977.365) & (47505.385) & (59653.659) & (47854.234) & (46384.724) \\
+\midrule
+Control Group & Not Yet & Never & Not Yet & Not Yet & Not Yet \\
+ & Treated & Treated & Treated & Treated & Treated \\
+Threshold & Country & Country & Country & Country & Country \\
+ & Mean & Mean & Median & Mean & Mean \\
+Estimator & DR & DR & DR & IPW & DR \\
+\bottomrule
+\end{tabular}\\
+\floatnote{Robust standard errors in parentheses. *** p$<$0.01, ** p$<$0.05, * p$<$0.10. Post-treatment ATT represents the average treatment effect across all post-treatment periods.}
+\end{table}
+
+
+\subsection{High Contestation}
+
+\begin{table}[H]
+\centering
+\caption{Robustness Checks:  Repression  (High  Contestation)}
+\label{tab:robust_ rep _ high }
+\begin{tabular}{lcccccc}
+\toprule
+ & (1) & (2) & (3) & (4) & (5) & (6) \\
+ & Baseline & Universal & Never & Median & IPW & Doubly \\
+ &  & Mean & Treated & Threshold &  & Robust \\
+\midrule
+Post-Treatment ATT &  0.530  &  1.022  &  0.531  &  0.572  &  0.530  &  0.530  \\
+ &  (2.444)  &  (3.097)  &  (2.413)  &  (1.879)  &  (2.427)  &  (2.409)  \\
+\midrule
+Control Group & Not Yet & Not Yet & Never & Not Yet & Not Yet & Not Yet \\
+ & Treated & Treated & Treated & Treated & Treated & Treated \\
+Threshold & Country & Universal & Country & Country & Country & Country \\
+ & Mean & Mean & Mean & Median & Mean & Mean \\
+Estimator & DR & DR & DR & DR & IPW & DR \\
+\bottomrule
+\end{tabular}\\
+\floatnote{Robust standard errors in parentheses. *** p$<$0.01, ** p$<$0.05, * p$<$0.10. Post-treatment ATT represents the average treatment effect across all post-treatment periods.}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\caption{Robustness Checks:  Military Activity  (High  Contestation)}
+\label{tab:robust_ mil _ high }
+\begin{tabular}{lcccccc}
+\toprule
+ & (1) & (2) & (3) & (4) & (5) & (6) \\
+ & Baseline & Universal & Never & Median & IPW & Doubly \\
+ &  & Mean & Treated & Threshold &  & Robust \\
+\midrule
+Post-Treatment ATT &  0.500  &  0.682  &  0.500  &  0.656  &  0.500  &  0.500  \\
+ &  (0.872)  &  (0.954)  &  (0.882)  &  (0.885)  &  (0.885)  &  (0.883)  \\
+\midrule
+Control Group & Not Yet & Not Yet & Never & Not Yet & Not Yet & Not Yet \\
+ & Treated & Treated & Treated & Treated & Treated & Treated \\
+Threshold & Country & Universal & Country & Country & Country & Country \\
+ & Mean & Mean & Mean & Median & Mean & Mean \\
+Estimator & DR & DR & DR & DR & IPW & DR \\
+\bottomrule
+\end{tabular}\\
+\floatnote{Robust standard errors in parentheses. *** p$<$0.01, ** p$<$0.05, * p$<$0.10. Post-treatment ATT represents the average treatment effect across all post-treatment periods.}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\caption{Robustness Checks:  Territorial Events  (High  Contestation)}
+\label{tab:robust_ terr _ high }
+\begin{tabular}{lcccccc}
+\toprule
+ & (1) & (2) & (3) & (4) & (5) & (6) \\
+ & Baseline & Universal & Never & Median & IPW & Doubly \\
+ &  & Mean & Treated & Threshold &  & Robust \\
+\midrule
+Post-Treatment ATT &  0.003  &  0.011  &  0.003  &  -0.015  &  0.003  &  0.003  \\
+ &  (0.174)  &  (0.222)  &  (0.175)  &  (0.038)  &  (0.174)  &  (0.174)  \\
+\midrule
+Control Group & Not Yet & Not Yet & Never & Not Yet & Not Yet & Not Yet \\
+ & Treated & Treated & Treated & Treated & Treated & Treated \\
+Threshold & Country & Universal & Country & Country & Country & Country \\
+ & Mean & Mean & Mean & Median & Mean & Mean \\
+Estimator & DR & DR & DR & DR & IPW & DR \\
+\bottomrule
+\end{tabular}\\
+\floatnote{Robust standard errors in parentheses. *** p$<$0.01, ** p$<$0.05, * p$<$0.10. Post-treatment ATT represents the average treatment effect across all post-treatment periods.}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\caption{Robustness Checks: Displacement (High Contestation)}
+\label{tab:robust_idp_high}
+\begin{tabular}{lccccc}
+\toprule
+ & (1) & (2) & (3) & (4) & (5) \\
+ & Baseline & Never & Median & IPW & Doubly \\
+ &  & Treated & Threshold &  & Robust \\
+\midrule
+Post-Treat ATT & -208635.064** & -208596.877** & -118264.427* & -208635.064** & -208635.064** \\
+ & (93676.173) & (92226.902) & (64897.609) & (92189.593) & (95284.071) \\
+\midrule
+Control Group & Not Yet & Never & Not Yet & Not Yet & Not Yet \\
+ & Treated & Treated & Treated & Treated & Treated \\
+Threshold & Country & Country & Country & Country & Country \\
+ & Mean & Mean & Median & Mean & Mean \\
+Estimator & DR & DR & DR & IPW & DR \\
+\bottomrule
+\end{tabular}\\
+\floatnote{Robust standard errors in parentheses. *** p$<$0.01, ** p$<$0.05, * p$<$0.10. Post-treatment ATT represents the average treatment effect across all post-treatment periods.}
+\end{table}
+
+{\color{black} \subsection{Disaggregated Territorial Takeover Events}
+
+The pooled territorial takeover results in the main text show positive point estimates in low-contestation areas but lose statistical significance in some robustness specifications. To probe this further, we disaggregate territorial takeover events into rebel takeovers (instances where non-state armed groups seize territory from government forces) and government regains (instances where government forces retake territory from non-state actors). Table~\ref{tab:terr_disagg} reports the results.
+
+
+\begin{table}[H]
+\centering
+\caption{Disaggregated Territorial Takeover Events by Actor Type}
+\label{tab:terr_disagg}
+\begin{tabular}{lcccc}
+\toprule
+ & \multicolumn{2}{c}{Low Contestation} & \multicolumn{2}{c}{High Contestation} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+ & Rebel & Gov't & Rebel & Gov't \\
+ & Takeover & Regain & Takeover & Regain \\
+\midrule
+Post-Treatment ATT & 0.011** & 0.014** & -0.001 & -0.009 \\
+ & (0.004) & (0.006) & (0.033) & (0.019) \\
+\bottomrule
+\end{tabular}\\
+\floatnote{Robust standard errors in parentheses. *** p$<$0.01, ** p$<$0.05, * p$<$0.10. Post-Treatment ATT represents the average treatment effect across all post-treatment periods. Estimates use the baseline specification (doubly robust estimator, not-yet-treated controls, within-country mean contestation threshold).}
+\end{table}
+
+Both components are individually significant in low-contestation areas. Rebel takeovers increase by 0.011 events per month ($p < 0.05$) and government regains increase by 0.014 events per month ($p < 0.05$). The fact that both increase is consistent with disasters opening a two-way territorial contest in previously stable areas. Rebels exploit disaster-created vulnerabilities to seize territory, and governments react by attempting to retake it. Neither component shows significant effects in high-contestation areas.
+
+}
+
+
+
+\end{document}
